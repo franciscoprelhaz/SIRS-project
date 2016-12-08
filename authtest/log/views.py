@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from log.forms import UserForm, UserProfileForm
+from log.auctionitem import itemList
 #from django.template import RequestContext
 
 # Create your views here.
 #login required is to not allow any non authenticated views
 @login_required(login_url="login/")
 def home(request):
-    return render(request, "home.html")
+    return render(request,
+                  "home.html",
+                  {'item_list': itemList}
+                  )
 
 
 def register(request):
@@ -35,11 +39,11 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    return render('log/register.html',
+    return render(request,
+                  'log/register.html',
                   {'user_form': user_form,
                   'profile_form': profile_form,
-                  'registered': registered,},
-                  request
+                  'registered': registered,}
                   )
 
 
