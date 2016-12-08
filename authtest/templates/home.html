@@ -11,7 +11,11 @@
                 <tr>
                     <td><p>{{ item.name }}</p></td>
                     <td><p>{{ item.price }}€</p></td>
-                    <td><input class="btn btn-success btn-sm" type="submit" value="Bid"></td>
+                    <td>
+                        <form>
+                            <input class="btn btn-success btn-sm" type="submit" value="Bid" onclick="{{ item.increment }}">
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
             </table>
